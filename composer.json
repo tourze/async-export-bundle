@@ -16,7 +16,7 @@
     "symfony/http-kernel": "^6.4",
     "symfony/framework-bundle": "^6.4",
     "symfony/yaml": "^6.4 || ^7.1",
-    "tourze/easy-admin-attribute": "0.0.*",
+    "tourze/easy-admin-attribute": "0.1.*",
     "tourze/doctrine-indexed-bundle": "0.0.*",
     "tourze/doctrine-track-bundle": "0.0.*",
     "tourze/doctrine-user-bundle": "0.0.*",
