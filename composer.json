@@ -21,7 +21,7 @@
     "tourze/doctrine-track-bundle": "0.1.*",
     "tourze/doctrine-user-bundle": "0.0.*",
     "tourze/doctrine-timestamp-bundle": "0.0.*",
-    "tourze/doctrine-snowflake-bundle": "0.0.*"
+    "tourze/doctrine-snowflake-bundle": "0.1.*"
   },
   "autoload": {
     "psr-4": {
