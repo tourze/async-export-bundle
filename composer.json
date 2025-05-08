@@ -9,7 +9,6 @@
     "doctrine/doctrine-bundle": "^2.13",
     "doctrine/orm": "^3.0",
     "doctrine/persistence": "^3.1 || ^4",
-    "psr/log": "^3|^2|^1",
     "symfony/config": "^6.4",
     "symfony/dependency-injection": "^6.4",
     "symfony/framework-bundle": "^6.4",
@@ -20,8 +19,7 @@
     "tourze/doctrine-snowflake-bundle": "0.1.*",
     "tourze/doctrine-timestamp-bundle": "0.0.*",
     "tourze/doctrine-track-bundle": "0.1.*",
-    "tourze/doctrine-user-bundle": "0.0.*",
-    "tourze/easy-admin-attribute": "0.1.*"
+    "tourze/doctrine-user-bundle": "0.0.*"
   },
   "require-dev": {
     "phpstan/phpstan": "^2.1",
