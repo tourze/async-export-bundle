@@ -260,7 +260,7 @@ class AsyncExportTaskTest extends TestCase
 
     public function testGetAndSetCreateTime(): void
     {
-        $createTime = new \DateTime('2023-01-01 12:00:00');
+        $createTime = new \DateTimeImmutable('2023-01-01 12:00:00');
         
         $this->task->setCreateTime($createTime);
         
@@ -274,7 +274,7 @@ class AsyncExportTaskTest extends TestCase
 
     public function testGetAndSetUpdateTime(): void
     {
-        $updateTime = new \DateTime('2023-01-02 12:00:00');
+        $updateTime = new \DateTimeImmutable('2023-01-02 12:00:00');
         
         $this->task->setUpdateTime($updateTime);
         
