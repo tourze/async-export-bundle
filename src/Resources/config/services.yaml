@@ -6,3 +6,21 @@ services:
 
   AsyncExportBundle\Repository\:
     resource: '../../Repository/'
+
+  AsyncExportBundle\Controller\Admin\:
+    resource: '../../Controller/Admin/'
+
+  AsyncExportBundle\Service\:
+    resource: '../../Service/'
+
+  AsyncExportBundle\Command\:
+    resource: '../../Command/'
+
+  # 异步导出服务配置
+  AsyncExportBundle\Service\AsyncExportService:
+    arguments:
+      $projectDir: '%kernel.project_dir%'
+
+  AsyncExportBundle\Service\ExportFileService:
+    arguments:
+      $projectDir: '%kernel.project_dir%'

@@ -1,20 +1,39 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AsyncExportBundle\DependencyInjection;
 
-use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Extension\Extension;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Tourze\SymfonyDependencyServiceLoader\AutoExtension;
 
-class AsyncExportExtension extends Extension
+class AsyncExportExtension extends AutoExtension implements PrependExtensionInterface
 {
-    public function load(array $configs, ContainerBuilder $container): void
+    protected function getConfigDir(): string
     {
-        $loader = new YamlFileLoader(
-            $container,
-            new FileLocator(__DIR__ . '/../Resources/config')
-        );
-        $loader->load('services.yaml');
+        return __DIR__ . '/../Resources/config';
+    }
+
+    public function prepend(ContainerBuilder $container): void
+    {
+        // 获取Bundle的实际路径
+        $bundleDir = dirname(__DIR__, 2);
+        $entityDir = $bundleDir . '/src/Entity';
+
+        // 配置Doctrine实体映射
+        $container->prependExtensionConfig('doctrine', [
+            'orm' => [
+                'mappings' => [
+                    'AsyncExportBundle' => [
+                        'is_bundle' => false,
+                        'type' => 'attribute',
+                        'dir' => $entityDir,
+                        'prefix' => 'AsyncExportBundle\Entity',
+                        'alias' => 'AsyncExport',
+                    ],
+                ],
+            ],
+        ]);
     }
 }

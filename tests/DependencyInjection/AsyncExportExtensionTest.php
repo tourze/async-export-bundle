@@ -3,43 +3,53 @@
 namespace AsyncExportBundle\Tests\DependencyInjection;
 
 use AsyncExportBundle\DependencyInjection\AsyncExportExtension;
-use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Tourze\PHPUnitSymfonyUnitTest\AbstractDependencyInjectionExtensionTestCase;
 
-class AsyncExportExtensionTest extends TestCase
+/**
+ * @internal
+ */
+#[CoversClass(AsyncExportExtension::class)]
+final class AsyncExportExtensionTest extends AbstractDependencyInjectionExtensionTestCase
 {
-    private AsyncExportExtension $extension;
-    private ContainerBuilder $container;
-
-    protected function setUp(): void
+    protected function getExtensionClass(): string
     {
-        $this->extension = new AsyncExportExtension();
-        $this->container = new ContainerBuilder();
+        return AsyncExportExtension::class;
     }
 
-    public function testLoad(): void
+    public function testPrepend(): void
     {
-        $this->extension->load([], $this->container);
-        
-        $this->assertTrue(
-            file_exists(__DIR__ . '/../../src/Resources/config/services.yaml'),
-            'services.yaml 配置文件应该存在'
-        );
-        
-        $this->assertTrue(
-            $this->container->hasDefinition('AsyncExportBundle\Repository\AsyncExportTaskRepository') ||
-            $this->container->hasAlias('AsyncExportBundle\Repository\AsyncExportTaskRepository'),
-            'AsyncExportTaskRepository 服务应该被注册'
-        );
-    }
+        $container = new ContainerBuilder();
+        $extension = new AsyncExportExtension();
 
-    public function testLoadWithEmptyConfigs(): void
-    {
-        $this->extension->load([], $this->container);
-        
-        $this->assertNotEmpty(
-            $this->container->getDefinitions(),
-            'Container 不应为空，即使没有配置'
-        );
+        $extension->prepend($container);
+
+        // 验证Doctrine配置已添加
+        $configs = $container->getExtensionConfig('doctrine');
+        self::assertNotEmpty($configs);
+
+        // 检查映射配置 - 使用assertIsArray同时完成类型检查和类型窄化
+        $firstConfig = $configs[0];
+        self::assertIsArray($firstConfig);
+        self::assertArrayHasKey('orm', $firstConfig);
+
+        $ormConfig = $firstConfig['orm'];
+        self::assertIsArray($ormConfig);
+        self::assertArrayHasKey('mappings', $ormConfig);
+
+        $mappings = $ormConfig['mappings'];
+        self::assertIsArray($mappings);
+        self::assertArrayHasKey('AsyncExportBundle', $mappings);
+
+        $bundleMapping = $mappings['AsyncExportBundle'];
+        self::assertIsArray($bundleMapping);
+        self::assertFalse($bundleMapping['is_bundle']);
+        self::assertSame('attribute', $bundleMapping['type']);
+        self::assertSame('AsyncExportBundle\Entity', $bundleMapping['prefix']);
+        self::assertSame('AsyncExport', $bundleMapping['alias']);
+
+        self::assertIsString($bundleMapping['dir']);
+        self::assertStringContainsString('/src/Entity', $bundleMapping['dir']);
     }
-} 
+}
