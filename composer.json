@@ -26,7 +26,7 @@
     "symfony/twig-bundle": "^7.3",
     "symfony/yaml": "^7.3",
     "tourze/bundle-dependency": "1.*",
-    "tourze/doctrine-indexed-bundle": "0.0.*",
+    "tourze/doctrine-indexed-bundle": "1.0.*",
     "tourze/doctrine-snowflake-bundle": "0.1.*",
     "tourze/doctrine-timestamp-bundle": "0.0.*",
     "tourze/doctrine-track-bundle": "0.1.*",
