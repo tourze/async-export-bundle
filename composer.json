@@ -42,9 +42,9 @@
     "phpunit/phpunit": "^11.5",
     "tourze/phpunit-base": "1.*",
     "tourze/phpunit-doctrine-entity": "1.*",
-    "tourze/phpunit-symfony-kernel-test": "0.0.*",
+    "tourze/phpunit-symfony-kernel-test": "1.*",
     "tourze/phpunit-symfony-unit-test": "1.*",
-    "tourze/phpunit-symfony-web-test": "0.0.*"
+    "tourze/phpunit-symfony-web-test": "1.*"
   },
   "autoload": {
     "psr-4": {
