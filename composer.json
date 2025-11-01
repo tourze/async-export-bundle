@@ -32,7 +32,7 @@
     "tourze/doctrine-timestamp-bundle": "1.0.*",
     "tourze/doctrine-track-bundle": "1.0.*",
     "tourze/doctrine-user-bundle": "1.0.*",
-    "tourze/easy-admin-extra-bundle": "0.1.*",
+    "tourze/easy-admin-extra-bundle": "1.0.*",
     "tourze/easy-admin-menu-bundle": "1.0.*",
     "tourze/symfony-dependency-service-loader": "1.*",
     "tourze/symfony-routing-auto-loader-bundle": "1.0.*"
