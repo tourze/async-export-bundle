@@ -31,7 +31,7 @@ final class AsyncExportTaskTest extends AbstractEntityTestCase
     public static function propertiesProvider(): \Generator
     {
         // 为每个属性提供测试样本值
-        yield 'user' => ['user', null];
+        // user 属性为 UserInterface 类型，避免序列化问题，由专门的测试方法覆盖
         yield 'file' => ['file', 'test_file.csv'];
         yield 'entityClass' => ['entityClass', 'App\Entity\TestEntity'];
         yield 'dql' => ['dql', 'SELECT e FROM Entity e WHERE e.id = :id'];
