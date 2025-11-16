@@ -41,6 +41,7 @@
     "doctrine/doctrine-fixtures-bundle": "^4.0",
     "phpstan/phpstan": "^2.1",
     "phpunit/phpunit": "^11.5",
+    "tourze/easy-admin-image-preview-field-bundle": "1.0.*",
     "tourze/phpunit-base": "1.*",
     "tourze/phpunit-doctrine-entity": "1.*",
     "tourze/phpunit-symfony-kernel-test": "1.0.*",
